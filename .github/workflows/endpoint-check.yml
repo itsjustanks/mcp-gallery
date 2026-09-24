@@ -1,0 +1,37 @@
+name: Endpoint check
+
+on:
+  schedule:
+    - cron: "0 3 * * 1" # Mondays 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Probe endpoints and packages
+        id: probe
+        run: node scripts/check-endpoints.mjs
+        env:
+          REPORT_PATH: ${{ runner.temp }}/endpoint-report.md
+      - name: Open or update issue
+        if: failure() && steps.probe.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPORT: ${{ runner.temp }}/endpoint-report.md
+        run: |
+          gh label create endpoint-check --color d93f0b --description "Weekly endpoint check failures" --force
+          existing=$(gh issue list --label endpoint-check --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file "$REPORT"
+          else
+            gh issue create --title "Endpoint check failed" --label endpoint-check --body-file "$REPORT"
+          fi

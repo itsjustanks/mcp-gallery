@@ -1,0 +1,1049 @@
+{
+  "servers": [
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "app.linear/linear",
+        "title": "Linear",
+        "description": "Find, create, and update Linear issues, projects, and comments.",
+        "version": "1.0.1",
+        "websiteUrl": "https://linear.app",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.linear.app/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Linear",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/46686594?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://linear.app/docs/mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "aws.api.knowledge-mcp/aws-knowledge",
+        "title": "AWS Knowledge",
+        "description": "Search AWS documentation, API references, and architecture guidance.",
+        "version": "1.0.0",
+        "websiteUrl": "https://aws.amazon.com",
+        "repository": {
+          "url": "https://github.com/awslabs/mcp",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://knowledge-mcp.global.api.aws"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "AWS Knowledge",
+          "category": "documentation",
+          "iconUrl": "https://avatars.githubusercontent.com/u/3299148?v=4",
+          "auth": "none",
+          "docsUrl": "https://awslabs.github.io/mcp/servers/aws-knowledge-mcp-server",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "co.huggingface/hf-mcp-server",
+        "title": "Hugging Face",
+        "description": "Search Hugging Face models, datasets, papers, and use Gradio Spaces.",
+        "version": "0.2.33",
+        "websiteUrl": "https://huggingface.co",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://huggingface.co/mcp?login"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Hugging Face",
+          "category": "ai",
+          "iconUrl": "https://avatars.githubusercontent.com/u/25720743?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://huggingface.co/docs/hub/en/hf-mcp-server",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.airtable/mcp",
+        "title": "Airtable",
+        "description": "Read and write Airtable bases, tables, and records.",
+        "version": "1.0.0",
+        "websiteUrl": "https://airtable.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.airtable.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Airtable",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/9687261?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://support.airtable.com/docs/using-the-airtable-mcp-server",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.atlassian/atlassian-mcp-server",
+        "title": "Atlassian Rovo",
+        "description": "Search, create, and update Jira issues, Confluence pages, and Compass components.",
+        "version": "2.0.0",
+        "websiteUrl": "https://www.atlassian.com",
+        "repository": {
+          "url": "https://github.com/atlassian/atlassian-mcp-server",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.atlassian.com/v2/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Atlassian Rovo",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/168166?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://support.atlassian.com/atlassian-rovo-mcp-server/docs/getting-started-with-the-atlassian-remote-mcp-server/",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.attio/mcp",
+        "title": "Attio",
+        "description": "Search and update Attio CRM records, lists, notes, and tasks.",
+        "version": "1.0.0",
+        "websiteUrl": "https://attio.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.attio.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Attio",
+          "category": "crm",
+          "iconUrl": "https://avatars.githubusercontent.com/u/50366930?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://docs.attio.com/mcp/overview",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.clickup/mcp",
+        "title": "ClickUp",
+        "description": "Manage ClickUp tasks, lists, docs, and time tracking (public beta).",
+        "version": "1.0.0",
+        "websiteUrl": "https://clickup.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.clickup.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "ClickUp",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/27873294?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.cloudflare/api",
+        "title": "Cloudflare API",
+        "description": "Call the full Cloudflare API (Workers, DNS, R2, and more) through one server.",
+        "version": "1.0.0",
+        "websiteUrl": "https://www.cloudflare.com",
+        "repository": {
+          "url": "https://github.com/cloudflare/mcp-server-cloudflare",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.cloudflare.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Cloudflare API",
+          "category": "developer",
+          "iconUrl": "https://avatars.githubusercontent.com/u/314135?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.cloudflare/docs",
+        "title": "Cloudflare Docs",
+        "description": "Search up-to-date Cloudflare developer documentation.",
+        "version": "1.0.0",
+        "websiteUrl": "https://developers.cloudflare.com",
+        "repository": {
+          "url": "https://github.com/cloudflare/mcp-server-cloudflare",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://docs.mcp.cloudflare.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Cloudflare Docs",
+          "category": "documentation",
+          "iconUrl": "https://avatars.githubusercontent.com/u/314135?v=4",
+          "auth": "none",
+          "docsUrl": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.deepwiki/mcp",
+        "title": "DeepWiki",
+        "description": "Read and ask questions about public GitHub repositories' documentation.",
+        "version": "1.0.0",
+        "websiteUrl": "https://deepwiki.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.deepwiki.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "DeepWiki",
+          "category": "documentation",
+          "iconUrl": "https://avatars.githubusercontent.com/u/163493330?v=4",
+          "auth": "none",
+          "docsUrl": "https://docs.devin.ai/work-with-devin/deepwiki-mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.gitlab/mcp",
+        "title": "GitLab",
+        "description": "Work with GitLab.com projects, issues, merge requests, and pipelines (beta).",
+        "version": "0.0.1",
+        "websiteUrl": "https://gitlab.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://gitlab.com/api/v4/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "GitLab",
+          "category": "developer",
+          "iconUrl": "https://avatars.githubusercontent.com/u/1086321?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://docs.gitlab.com/user/model_context_protocol/mcp_server/",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.intercom/mcp",
+        "title": "Intercom",
+        "description": "Search Intercom conversations and contacts (US-hosted workspaces).",
+        "version": "1.0.0",
+        "websiteUrl": "https://www.intercom.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.intercom.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Intercom",
+          "category": "support",
+          "iconUrl": "https://avatars.githubusercontent.com/u/6585?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://developers.intercom.com/docs/guides/mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.microsoft/microsoft-learn-mcp",
+        "title": "Microsoft Learn",
+        "description": "Search and fetch official Microsoft and Azure documentation.",
+        "version": "1.0.0",
+        "websiteUrl": "https://learn.microsoft.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://learn.microsoft.com/api/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Microsoft Learn",
+          "category": "documentation",
+          "iconUrl": "https://avatars.githubusercontent.com/u/22479449?v=4",
+          "auth": "none",
+          "docsUrl": "https://learn.microsoft.com/en-us/training/support/mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.monday/monday.com",
+        "title": "monday.com",
+        "description": "Read and manage monday.com boards, items, updates, and workspaces.",
+        "version": "0.0.1",
+        "websiteUrl": "https://monday.com",
+        "repository": {
+          "url": "https://github.com/mondaycom/mcp",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.monday.com/mcp"
+          },
+          {
+            "type": "sse",
+            "url": "https://mcp.monday.com/sse"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "monday.com",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/61420283?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://github.com/mondaycom/mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.neon/mcp",
+        "title": "Neon",
+        "description": "Manage Neon Postgres projects, branches, and run SQL.",
+        "version": "1.0.0",
+        "websiteUrl": "https://neon.com",
+        "repository": {
+          "url": "https://github.com/neondatabase/mcp-server-neon",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.neon.tech/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Neon",
+          "category": "database",
+          "iconUrl": "https://avatars.githubusercontent.com/u/77690634?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://neon.com/docs/ai/neon-mcp-server",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.netlify/mcp",
+        "title": "Netlify",
+        "description": "Create, deploy, and manage Netlify sites and projects.",
+        "version": "1.0.0",
+        "websiteUrl": "https://www.netlify.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://netlify-mcp.netlify.app/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Netlify",
+          "category": "developer",
+          "iconUrl": "https://avatars.githubusercontent.com/u/7892489?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://docs.netlify.com/build/build-with-ai/netlify-mcp-server/",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.notion/mcp",
+        "title": "Notion",
+        "description": "Search, read, and edit Notion pages, databases, and comments.",
+        "version": "1.0.1",
+        "websiteUrl": "https://www.notion.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.notion.com/mcp"
+          },
+          {
+            "type": "sse",
+            "url": "https://mcp.notion.com/sse"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Notion",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/4792552?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://developers.notion.com/docs/get-started-with-mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.paypal.mcp/mcp",
+        "title": "PayPal",
+        "description": "Manage PayPal invoices, orders, subscriptions, disputes, and reporting.",
+        "version": "1.0.0",
+        "websiteUrl": "https://www.paypal.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.paypal.com/mcp"
+          },
+          {
+            "type": "sse",
+            "url": "https://mcp.paypal.com/sse"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "PayPal",
+          "category": "payments",
+          "iconUrl": "https://avatars.githubusercontent.com/u/476675?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://developer.paypal.com/tools/mcp-server/",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.postman/postman-mcp-server",
+        "title": "Postman",
+        "description": "Access Postman workspaces, collections, environments, and APIs.",
+        "version": "2.13.0",
+        "websiteUrl": "https://www.postman.com/product/mcp-server/",
+        "repository": {
+          "url": "https://github.com/postmanlabs/postman-mcp-server",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.postman.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Postman",
+          "category": "developer",
+          "iconUrl": "https://avatars.githubusercontent.com/u/10251060?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://learning.postman.com/docs/reference/postman-api/postman-mcp-server/overview",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.squareup/mcp",
+        "title": "Square",
+        "description": "Access the Square API: payments, orders, customers, catalog, and more.",
+        "version": "1.0.0",
+        "websiteUrl": "https://squareup.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.squareup.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Square",
+          "category": "payments",
+          "iconUrl": "https://avatars.githubusercontent.com/u/82592?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://developer.squareup.com/docs/mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.stripe/mcp",
+        "title": "Stripe",
+        "description": "Work with Stripe customers, products, payments, and the Stripe knowledge base.",
+        "version": "0.2.4",
+        "websiteUrl": "https://stripe.com",
+        "repository": {
+          "url": "https://github.com/stripe/agent-toolkit",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.stripe.com"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Stripe",
+          "category": "payments",
+          "iconUrl": "https://avatars.githubusercontent.com/u/856813?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://docs.stripe.com/mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.supabase/mcp",
+        "title": "Supabase",
+        "description": "Manage Supabase projects, databases, edge functions, and branches.",
+        "version": "0.13.0",
+        "websiteUrl": "https://supabase.com/mcp",
+        "repository": {
+          "url": "https://github.com/supabase/mcp",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.supabase.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Supabase",
+          "category": "database",
+          "iconUrl": "https://avatars.githubusercontent.com/u/54469796?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://supabase.com/docs/guides/getting-started/mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.vercel/mcp",
+        "title": "Vercel",
+        "description": "Search Vercel docs and manage projects, deployments, and logs.",
+        "version": "1.0.0",
+        "websiteUrl": "https://vercel.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.vercel.com"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Vercel",
+          "category": "developer",
+          "iconUrl": "https://avatars.githubusercontent.com/u/14985020?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://vercel.com/docs/mcp/vercel-mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.webflow/mcp",
+        "title": "Webflow",
+        "description": "Design, build, and manage Webflow sites, CMS collections, and pages.",
+        "version": "2.0.0",
+        "websiteUrl": "https://webflow.com",
+        "repository": {
+          "url": "https://github.com/webflow/mcp-server",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.webflow.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Webflow",
+          "category": "websites",
+          "iconUrl": "https://avatars.githubusercontent.com/u/1229663?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://developers.webflow.com/mcp/reference/getting-started",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.wix/mcp",
+        "title": "Wix",
+        "description": "Build and manage Wix sites, and search Wix developer docs.",
+        "version": "1.0.2",
+        "websiteUrl": "https://www.wix.com",
+        "repository": {
+          "url": "https://github.com/wix/wix-mcp",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.wix.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Wix",
+          "category": "websites",
+          "iconUrl": "https://avatars.githubusercontent.com/u/686511?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://dev.wix.com/docs/sdk/articles/use-the-wix-mcp/about-the-wix-mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.zapier/mcp",
+        "title": "Zapier",
+        "description": "Run actions across 9,000+ apps connected through your Zapier account.",
+        "version": "1.0.1",
+        "websiteUrl": "https://zapier.com",
+        "repository": {
+          "url": "https://github.com/zapier/zapier-mcp",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.zapier.com/api/v1/connect"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Zapier",
+          "category": "automation",
+          "iconUrl": "https://avatars.githubusercontent.com/u/1261889?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://docs.zapier.com/mcp/home",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "dev.shopify/dev-mcp",
+        "title": "Shopify Dev",
+        "description": "Search Shopify developer docs and explore Admin GraphQL schemas locally.",
+        "version": "1.15.4",
+        "websiteUrl": "https://shopify.dev",
+        "packages": [
+          {
+            "registryType": "npm",
+            "registryBaseUrl": "https://registry.npmjs.org",
+            "identifier": "@shopify/dev-mcp",
+            "version": "1.15.4",
+            "runtimeHint": "npx",
+            "transport": {
+              "type": "stdio"
+            }
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Shopify Dev",
+          "category": "developer",
+          "iconUrl": "https://avatars.githubusercontent.com/u/8085?v=4",
+          "auth": "none",
+          "docsUrl": "https://shopify.dev/docs/apps/build/devmcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.github.github/github-mcp-server",
+        "title": "GitHub",
+        "description": "Work with GitHub repositories, issues, pull requests, and Actions.",
+        "version": "1.0.0",
+        "websiteUrl": "https://github.com",
+        "repository": {
+          "url": "https://github.com/github/github-mcp-server",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://api.githubcopilot.com/mcp/",
+            "headers": [
+              {
+                "name": "Authorization",
+                "description": "GitHub personal access token, sent as 'Bearer <token>'.",
+                "isRequired": true,
+                "isSecret": true
+              }
+            ]
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "GitHub",
+          "category": "developer",
+          "iconUrl": "https://avatars.githubusercontent.com/u/9919?v=4",
+          "auth": "token",
+          "docsUrl": "https://github.com/github/github-mcp-server",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.github.microsoft/playwright-mcp",
+        "title": "Playwright",
+        "description": "Automate a local browser with Playwright: navigate, click, fill forms, and snapshot pages.",
+        "version": "0.0.82",
+        "websiteUrl": "https://playwright.dev",
+        "repository": {
+          "url": "https://github.com/microsoft/playwright-mcp",
+          "source": "github"
+        },
+        "packages": [
+          {
+            "registryType": "npm",
+            "registryBaseUrl": "https://registry.npmjs.org",
+            "identifier": "@playwright/mcp",
+            "version": "0.0.82",
+            "runtimeHint": "npx",
+            "transport": {
+              "type": "stdio"
+            }
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Playwright",
+          "category": "developer",
+          "iconUrl": "https://avatars.githubusercontent.com/u/6154722?v=4",
+          "auth": "none",
+          "docsUrl": "https://github.com/microsoft/playwright-mcp",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.github.modelcontextprotocol/server-filesystem",
+        "title": "Filesystem (reference)",
+        "description": "Official MCP reference server for reading and writing files in allowed local directories.",
+        "version": "2026.8.31",
+        "websiteUrl": "https://modelcontextprotocol.io",
+        "repository": {
+          "url": "https://github.com/modelcontextprotocol/servers",
+          "source": "github"
+        },
+        "packages": [
+          {
+            "registryType": "npm",
+            "registryBaseUrl": "https://registry.npmjs.org",
+            "identifier": "@modelcontextprotocol/server-filesystem",
+            "version": "2026.8.31",
+            "runtimeHint": "npx",
+            "transport": {
+              "type": "stdio"
+            },
+            "packageArguments": [
+              {
+                "type": "positional",
+                "valueHint": "allowed_directory",
+                "description": "Directory the server may access. Repeat for more than one.",
+                "isRequired": true,
+                "isRepeated": true,
+                "format": "filepath"
+              }
+            ]
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Filesystem (reference)",
+          "category": "developer",
+          "iconUrl": "https://avatars.githubusercontent.com/u/182288589?v=4",
+          "auth": "none",
+          "docsUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.github.mongodb-js/mongodb-mcp-server",
+        "title": "MongoDB",
+        "description": "Query MongoDB databases and manage MongoDB Atlas resources locally.",
+        "version": "3.0.4",
+        "websiteUrl": "https://www.mongodb.com",
+        "repository": {
+          "url": "https://github.com/mongodb-js/mongodb-mcp-server",
+          "source": "github"
+        },
+        "packages": [
+          {
+            "registryType": "npm",
+            "registryBaseUrl": "https://registry.npmjs.org",
+            "identifier": "mongodb-mcp-server",
+            "version": "3.0.4",
+            "runtimeHint": "npx",
+            "transport": {
+              "type": "stdio"
+            },
+            "environmentVariables": [
+              {
+                "name": "MDB_MCP_CONNECTION_STRING",
+                "description": "MongoDB connection string for database tools.",
+                "isRequired": false,
+                "isSecret": true
+              },
+              {
+                "name": "MDB_MCP_API_CLIENT_ID",
+                "description": "Atlas service account client ID for Atlas tools.",
+                "isRequired": false,
+                "isSecret": false
+              },
+              {
+                "name": "MDB_MCP_API_CLIENT_SECRET",
+                "description": "Atlas service account client secret for Atlas tools.",
+                "isRequired": false,
+                "isSecret": true
+              }
+            ]
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "MongoDB",
+          "category": "database",
+          "iconUrl": "https://avatars.githubusercontent.com/u/45120?v=4",
+          "auth": "token",
+          "docsUrl": "https://github.com/mongodb-js/mongodb-mcp-server",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.github.upstash/context7",
+        "title": "Context7",
+        "description": "Fetch current, version-specific library documentation and code examples.",
+        "version": "1.0.0",
+        "websiteUrl": "https://context7.com",
+        "repository": {
+          "url": "https://github.com/upstash/context7",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.context7.com/mcp",
+            "headers": [
+              {
+                "name": "Authorization",
+                "description": "Optional Context7 API key, sent as 'Bearer <key>', for higher rate limits.",
+                "isRequired": false,
+                "isSecret": true
+              }
+            ]
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Context7",
+          "category": "documentation",
+          "iconUrl": "https://avatars.githubusercontent.com/u/74989412?v=4",
+          "auth": "none",
+          "docsUrl": "https://github.com/upstash/context7",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.prisma/mcp",
+        "title": "Prisma Postgres",
+        "description": "Create and manage Prisma Postgres databases, backups, and connection strings.",
+        "version": "1.0.0",
+        "websiteUrl": "https://www.prisma.io",
+        "repository": {
+          "url": "https://github.com/prisma/mcp",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.prisma.io/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Prisma Postgres",
+          "category": "database",
+          "iconUrl": "https://avatars.githubusercontent.com/u/17219288?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://www.prisma.io/docs/postgres/integrations/mcp-server",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.sentry/mcp",
+        "title": "Sentry",
+        "description": "Investigate Sentry issues, errors, traces, and releases.",
+        "version": "1.0.0",
+        "websiteUrl": "https://sentry.io",
+        "repository": {
+          "url": "https://github.com/getsentry/sentry-mcp",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.sentry.dev/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Sentry",
+          "category": "observability",
+          "iconUrl": "https://avatars.githubusercontent.com/u/1396951?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://docs.sentry.io/product/sentry-mcp/",
+          "verifiedAt": "2026-09-24"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "count": 34
+  }
+}
