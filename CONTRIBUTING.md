@@ -57,7 +57,8 @@ Pull requests that add, fix, or remove entries are welcome. Please read the rule
 - **`name`**: if the vendor has published this same server to the official MCP Registry, use that name. Otherwise use the vendor's domain reversed plus a short suffix, for example `com.example/mcp`.
 - **`version`**: use the vendor's published version if there is one. Otherwise use `1.0.0`. For packages, use the exact package version.
 - **`remotes`**: list `streamable-http` first. Only add `sse` if the vendor still documents it and it still answers.
-- **Headers and environment variables** (for `auth: "token"`): give `name`, `description`, `isRequired`, and `isSecret`. Never add `value` or `default` to a header or a secret. Say in the description how the value is sent, for example "sent as 'Bearer <token>'".
+- **Headers and environment variables** (for `auth: "token"`): give `name`, `description`, `isRequired`, and `isSecret`. Never add a `default` to a header, or a `value` or `default` to a secret or an environment variable.
+- **Header templates**: when the vendor wants a scheme in front of the key, give the header a `value` template and describe each placeholder in `variables`, for example `"value": "Bearer {token}"` with `"variables": { "token": { "description": "…", "isRequired": true, "isSecret": true } }`. Placeholders are `{name}` (letters, digits, `_`), never `${…}`. On a credential header (`Authorization`, anything with key, token, secret…) only a scheme word such as `Bearer`, `Basic` or `Token` may sit beside the placeholder. Use the vendor's own header, as their docs show it.
 - **`auth`**: `oauth` if the client signs in through the browser, `token` if the user must supply a key, `none` if no sign-in is needed.
 - **`iconUrl`**: the vendor's GitHub organisation avatar (`gh api users/<org> --jq .avatar_url`).
 - **`verifiedAt`**: the date you checked the vendor page, in `YYYY-MM-DD` format.

@@ -36,12 +36,12 @@ It is one static file, laid out like the registry's `GET /v0.1/servers` response
 - `server` is a standard `server.json` ([2025-12-11 schema](https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json)).
 - `_meta["io.github.itsjustanks/mcp-gallery"]` holds the gallery's own notes:
   - `displayName`: name to show in a UI.
-  - `category`: one of `ai`, `automation`, `crm`, `database`, `developer`, `documentation`, `observability`, `payments`, `productivity`, `support`, `websites`.
+  - `category`: one of `developer`, `data`, `docs`, `productivity`, `design`, `crm`, `support`, `marketing`, `analytics`, `payments`, `automation`, `other`. These are the paseo-mcp plugin's own filter names, so a server lands in the same filter as its recommended card.
   - `iconUrl` (optional): the vendor's GitHub organisation avatar.
   - `auth`: what the user needs to connect. `oauth` means the client signs in through the browser. `token` means the user pastes an API key or token into a declared header or environment variable. `none` means no sign-in.
   - `docsUrl`: the vendor page used to check the entry.
   - `verifiedAt`: the date the entry was last checked against that page.
-- Header and environment variable entries are templates only. They never contain a value. Your client asks the user for it.
+- Header and environment variable entries are templates only. They never contain a secret. A header may have a `value` template such as `Bearer {token}`, with each `{name}` described in `variables`; your client asks the user for it. Environment variables never have a value.
 
 ## What gets in
 
@@ -57,7 +57,7 @@ Remote servers are preferred. Local (`packages`) entries are kept to a few offic
 
 ## Checks
 
-- `npm run validate` checks every entry against the pinned `server.json` schema and the gallery's metadata schema. It also checks that names are unique, the list is sorted, every URL is `https`, no header or secret has a value, the `auth` field matches the declared inputs, and nothing in the file looks like an email address, IP address, or token. This runs on every pull request.
+- `npm run validate` checks every entry against the pinned `server.json` schema and the gallery's metadata schema. It also checks that names are unique, the list is sorted, every URL is `https`, no secret has a value, a header `value` is a `{name}` template (no `${…}`, every placeholder in `variables`, nothing but a scheme word such as `Bearer` beside it on a credential header), the `auth` field matches the declared inputs, and nothing in the file looks like an email address, IP address, or token. This runs on every pull request.
 - `npm run check-endpoints` sends an unauthenticated `initialize` request to every remote and checks that every package version exists. It never sends credentials. It runs every Monday and opens an issue if something stops responding.
 
 ## Contributing

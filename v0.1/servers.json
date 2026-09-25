@@ -48,7 +48,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "AWS Knowledge",
-          "category": "documentation",
+          "category": "docs",
           "iconUrl": "https://avatars.githubusercontent.com/u/3299148?v=4",
           "auth": "none",
           "docsUrl": "https://awslabs.github.io/mcp/servers/aws-knowledge-mcp-server",
@@ -74,7 +74,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "Hugging Face",
-          "category": "ai",
+          "category": "developer",
           "iconUrl": "https://avatars.githubusercontent.com/u/25720743?v=4",
           "auth": "oauth",
           "docsUrl": "https://huggingface.co/docs/hub/en/hf-mcp-server",
@@ -242,7 +242,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "Cloudflare Docs",
-          "category": "documentation",
+          "category": "docs",
           "iconUrl": "https://avatars.githubusercontent.com/u/314135?v=4",
           "auth": "none",
           "docsUrl": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
@@ -268,7 +268,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "DeepWiki",
-          "category": "documentation",
+          "category": "docs",
           "iconUrl": "https://avatars.githubusercontent.com/u/163493330?v=4",
           "auth": "none",
           "docsUrl": "https://docs.devin.ai/work-with-devin/deepwiki-mcp",
@@ -346,7 +346,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "Microsoft Learn",
-          "category": "documentation",
+          "category": "docs",
           "iconUrl": "https://avatars.githubusercontent.com/u/22479449?v=4",
           "auth": "none",
           "docsUrl": "https://learn.microsoft.com/en-us/training/support/mcp",
@@ -410,7 +410,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "Neon",
-          "category": "database",
+          "category": "data",
           "iconUrl": "https://avatars.githubusercontent.com/u/77690634?v=4",
           "auth": "oauth",
           "docsUrl": "https://neon.com/docs/ai/neon-mcp-server",
@@ -612,7 +612,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "Supabase",
-          "category": "database",
+          "category": "data",
           "iconUrl": "https://avatars.githubusercontent.com/u/54469796?v=4",
           "auth": "oauth",
           "docsUrl": "https://supabase.com/docs/guides/getting-started/mcp",
@@ -668,7 +668,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "Webflow",
-          "category": "websites",
+          "category": "design",
           "iconUrl": "https://avatars.githubusercontent.com/u/1229663?v=4",
           "auth": "oauth",
           "docsUrl": "https://developers.webflow.com/mcp/reference/getting-started",
@@ -698,7 +698,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "Wix",
-          "category": "websites",
+          "category": "design",
           "iconUrl": "https://avatars.githubusercontent.com/u/686511?v=4",
           "auth": "oauth",
           "docsUrl": "https://dev.wix.com/docs/sdk/articles/use-the-wix-mcp/about-the-wix-mcp",
@@ -789,7 +789,15 @@
                 "name": "Authorization",
                 "description": "GitHub personal access token, sent as 'Bearer <token>'.",
                 "isRequired": true,
-                "isSecret": true
+                "isSecret": true,
+                "value": "Bearer {token}",
+                "variables": {
+                  "token": {
+                    "description": "GitHub personal access token",
+                    "isRequired": true,
+                    "isSecret": true
+                  }
+                }
               }
             ]
           }
@@ -936,7 +944,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "MongoDB",
-          "category": "database",
+          "category": "data",
           "iconUrl": "https://avatars.githubusercontent.com/u/45120?v=4",
           "auth": "token",
           "docsUrl": "https://github.com/mongodb-js/mongodb-mcp-server",
@@ -965,7 +973,15 @@
                 "name": "Authorization",
                 "description": "Optional Context7 API key, sent as 'Bearer <key>', for higher rate limits.",
                 "isRequired": false,
-                "isSecret": true
+                "isSecret": true,
+                "value": "Bearer {api_key}",
+                "variables": {
+                  "api_key": {
+                    "description": "Context7 API key (optional)",
+                    "isRequired": false,
+                    "isSecret": true
+                  }
+                }
               }
             ]
           }
@@ -974,7 +990,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "Context7",
-          "category": "documentation",
+          "category": "docs",
           "iconUrl": "https://avatars.githubusercontent.com/u/74989412?v=4",
           "auth": "none",
           "docsUrl": "https://github.com/upstash/context7",
@@ -1004,7 +1020,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "Prisma Postgres",
-          "category": "database",
+          "category": "data",
           "iconUrl": "https://avatars.githubusercontent.com/u/17219288?v=4",
           "auth": "oauth",
           "docsUrl": "https://www.prisma.io/docs/postgres/integrations/mcp-server",
@@ -1034,7 +1050,7 @@
       "_meta": {
         "io.github.itsjustanks/mcp-gallery": {
           "displayName": "Sentry",
-          "category": "observability",
+          "category": "developer",
           "iconUrl": "https://avatars.githubusercontent.com/u/1396951?v=4",
           "auth": "oauth",
           "docsUrl": "https://docs.sentry.io/product/sentry-mcp/",

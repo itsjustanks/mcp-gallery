@@ -9,18 +9,20 @@
     "displayName": { "type": "string", "minLength": 1, "maxLength": 60 },
     "category": {
       "type": "string",
+      "description": "The same names the paseo-mcp plugin uses for its category filter (CATALOG_CATEGORIES).",
       "enum": [
-        "ai",
-        "automation",
-        "crm",
-        "database",
         "developer",
-        "documentation",
-        "observability",
-        "payments",
+        "data",
+        "docs",
         "productivity",
+        "design",
+        "crm",
         "support",
-        "websites"
+        "marketing",
+        "analytics",
+        "payments",
+        "automation",
+        "other"
       ]
     },
     "iconUrl": { "type": "string", "format": "uri", "pattern": "^https://" },

@@ -24,6 +24,40 @@ const SECRET_PATTERNS = [
   ["bearer credential", /Bearer\s+(?!<)[A-Za-z0-9._~+/=-]{16,}/],
 ];
 
+// Header value templates, held to the same rules as the paseo-mcp plugin
+// (shared/catalog.ts): `{name}` placeholders the user fills in, never `${…}`,
+// and beside the placeholders only a scheme word on a credential header.
+const PLACEHOLDER = /\{([A-Za-z_][A-Za-z0-9_]{0,63})\}/g;
+const CREDENTIAL_NAME = /(token|secret|key|password|passwd|auth|bearer|credential|cookie|session|signature)/i;
+const CREDENTIAL_LITERAL = /^\s*(bearer|basic|token|apikey|api-key)?[\s:=,;]*$/i;
+
+/** A long run of mixed letters and digits: the shape of a random key. */
+function looksLikeKey(text) {
+  const mixed = (piece) => /[A-Za-z]/.test(piece) && /[0-9]/.test(piece);
+  for (const run of text.match(/[A-Za-z0-9+=_-]{20,}/g) ?? []) {
+    if (run.split(/[-_]/).some((piece) => piece.length >= 20 && mixed(piece))) return true;
+    if (run.length >= 32 && (run.match(/[0-9]/g) ?? []).length >= 6 && mixed(run)) return true;
+  }
+  return false;
+}
+
+/** Why a header's `value` is not a template the user fills in, "" when it is one. */
+function headerTemplateProblem(header) {
+  const value = header.value;
+  if (typeof value !== "string") return "value must be text";
+  if (value.includes("${")) return "value uses ${…}; use {name} placeholders";
+  const ids = [...value.matchAll(PLACEHOLDER)].map((match) => match[1]);
+  if (ids.length === 0) return "has a value with no {placeholder}; header values must be left for the user to fill in";
+  const missing = ids.find((id) => !header.variables?.[id]);
+  if (missing) return `value uses {${missing}}, which is not in variables`;
+  const literal = value.replace(PLACEHOLDER, " ");
+  if (CREDENTIAL_NAME.test(header.name ?? "") && !CREDENTIAL_LITERAL.test(literal.replace(/\s+/g, " "))) {
+    return "value holds literal text beside its placeholder; a credential header may only add a scheme such as 'Bearer '";
+  }
+  if (looksLikeKey(literal)) return "value holds what looks like a literal key";
+  return "";
+}
+
 const errors = [];
 const fail = (where, message) => errors.push(`${where}: ${message}`);
 
@@ -60,7 +94,10 @@ function checkHttpsOnly(where, entry) {
 function inputsOf(server) {
   const inputs = [];
   for (const remote of server.remotes ?? []) {
-    for (const header of remote.headers ?? []) inputs.push({ kind: "header", ...header });
+    for (const header of remote.headers ?? []) {
+      inputs.push({ kind: "header", ...header });
+      for (const [id, variable] of Object.entries(header.variables ?? {})) inputs.push({ kind: "variable", name: `{${id}} in ${header.name}`, ...variable });
+    }
   }
   for (const pkg of server.packages ?? []) {
     for (const env of pkg.environmentVariables ?? []) inputs.push({ kind: "env", ...env });
@@ -74,8 +111,14 @@ function inputsOf(server) {
 function checkNoFilledSecrets(where, server) {
   for (const input of inputsOf(server)) {
     const label = `${input.kind} ${input.name ?? input.valueHint ?? "?"}`;
-    if (input.kind === "header" && ("value" in input || "default" in input)) {
-      fail(where, `${label} has a value; header values must be left for the user to fill in`);
+    if (input.kind === "header" && "default" in input) {
+      fail(where, `${label} has a default; header values must be left for the user to fill in`);
+    }
+    if (input.kind === "header" && "value" in input) {
+      const problem = headerTemplateProblem(input);
+      if (problem) fail(where, `${label} ${problem}`);
+      // A template's secret is its variables, checked on their own below.
+      continue;
     }
     if (input.isSecret && ("value" in input || "default" in input)) {
       fail(where, `${label} is secret but has a value/default`);
