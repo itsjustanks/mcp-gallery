@@ -1,15 +1,18 @@
 #!/usr/bin/env node
-// Validates v0.1/servers.json. Exits non-zero on any problem.
+// Validates v0.2/servers.json (or the file given), and that v0.1/servers.json
+// is v0.2 without its setup entries (see scripts/build.mjs). Exits non-zero on
+// any problem.
 import { readFileSync } from "node:fs";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
+import { v01Text } from "./build.mjs";
 
 const ROOT = new URL("..", import.meta.url);
 const read = (path) => readFileSync(new URL(path, ROOT), "utf8");
 
 const SERVER_SCHEMA_URL = "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json";
 const META_KEY = "io.github.itsjustanks/mcp-gallery";
-const DATA_PATH = process.argv[2] ?? "v0.1/servers.json";
+const DATA_PATH = process.argv[2] ?? "v0.2/servers.json";
 
 const SECRET_PATTERNS = [
   ["email address", /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/],
@@ -91,6 +94,16 @@ function checkHttpsOnly(where, entry) {
   }
 }
 
+// Control, zero-width and direction-changing characters: text that reads one
+// way and is another. The plugin strips them; the list shouldn't hold them.
+const UNSAFE_CHAR = /[\u0000-\u0008\u000b-\u001f\u007f-\u009f\u200b-\u200f\u2028-\u202e\u2060-\u2069\ufeff]/;
+
+function checkPlainText(where, entry) {
+  for (const [path, value] of walk(entry)) {
+    if (typeof value === "string" && UNSAFE_CHAR.test(value)) fail(where, `${path} holds a control or direction character`);
+  }
+}
+
 function inputsOf(server) {
   const inputs = [];
   for (const remote of server.remotes ?? []) {
@@ -145,6 +158,100 @@ function checkRemotes(where, server) {
   }
 }
 
+// "Needs setup" entries (setup in the gallery metadata), held to the same
+// rules as the paseo-mcp plugin (shared/setup.ts). A per-org address holds one
+// {subdomain} or {org} as the whole first host label or one whole path segment,
+// so a typed value can't move it to another site. Only per-org and admin
+// entries may have a placeholder in their address at all.
+const ORG_PLACEHOLDERS = new Set(["subdomain", "org"]);
+const MULTI_LABEL_ONLY = /^(co|com|net|org|ac|gov|edu|ne|or)\.[a-z]{2}$/;
+const MULTI_LABEL_SUFFIXES = new Set(["co.uk", "org.uk", "ac.uk", "gov.uk", "com.au", "net.au", "org.au", "edu.au", "gov.au", "co.nz", "org.nz", "co.jp", "ne.jp", "or.jp", "com.br", "com.cn", "co.in", "co.za", "com.mx", "com.sg", "com.hk", "co.kr"]);
+// Hosting domains where each subdomain is someone else's site (the plugin's SHARED_HOSTING).
+const SHARED_HOSTING = new Set([
+  "github.io", "gitlab.io", "vercel.app", "netlify.app", "pages.dev", "workers.dev", "herokuapp.com", "azurewebsites.net",
+  "web.app", "firebaseapp.com", "appspot.com", "onrender.com", "fly.dev", "cloudfront.net", "amazonaws.com", "blogspot.com",
+  "glitch.me", "replit.app", "repl.co", "ngrok.io", "ngrok-free.app", "trycloudflare.com", "run.app", "railway.app", "surge.sh",
+]);
+
+function registrableDomain(host) {
+  const labels = host.toLowerCase().split(".").filter(Boolean);
+  const lastTwo = labels.slice(-2).join(".");
+  return labels.length >= 3 && MULTI_LABEL_SUFFIXES.has(lastTwo) ? labels.slice(-3).join(".") : lastTwo;
+}
+
+// The vendors whose own sign-in app a byo-oauth entry may ask for, by the exact
+// hosts of their MCP servers and guides: the plugin's BYO_OAUTH_VENDORS
+// (shared/setup.ts), which it ships and never reads from a list. Adding one
+// here does nothing until the plugin knows it too.
+const BYO_OAUTH_VENDORS = [
+  { vendor: "Google", server: /^[a-z0-9-]+mcp\.googleapis\.com$/, links: ["developers.google.com", "console.cloud.google.com", "cloud.google.com", "workspace.google.com", "support.google.com"] },
+  { vendor: "HubSpot", server: /^mcp\.hubspot\.com$/, links: ["developers.hubspot.com", "knowledge.hubspot.com", "app.hubspot.com", "www.hubspot.com"] },
+  { vendor: "Zoom", server: /^mcp\.zoom\.us$/, links: ["developers.zoom.us", "marketplace.zoom.us", "support.zoom.com", "www.zoom.com"] },
+];
+
+function httpsHost(link) {
+  try {
+    const url = new URL(link);
+    return url.protocol === "https:" && !url.port && !url.username && !url.password ? url.hostname.toLowerCase() : "";
+  } catch {
+    return "";
+  }
+}
+
+function orgTemplateProblem(template) {
+  const ids = [...template.matchAll(PLACEHOLDER)].map((match) => match[1]);
+  if (ids.length !== 1 || !ORG_PLACEHOLDERS.has(ids[0])) return "needs exactly one {subdomain} or {org}";
+  const match = /^https:\/\/([^/?#@:]+)(\/[^?#]*)?$/.exec(template);
+  if (!match) return "must be https with no port, user name, query or fragment";
+  const [, host, path = ""] = match;
+  const token = `{${ids[0]}}`;
+  if (host.includes(token)) {
+    const base = host.slice(token.length + 1);
+    if (!host.startsWith(`${token}.`) || !/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(base) || MULTI_LABEL_ONLY.test(base)) return "must hold the placeholder as the whole first label of a vendor host";
+    if (SHARED_HOSTING.has(registrableDomain(base))) return "is under a shared hosting domain, where each subdomain is someone else's site";
+    return "";
+  }
+  if (!path.split("/").includes(token)) return "must hold the placeholder as the whole first host label or a whole path segment";
+  return "";
+}
+
+function checkSetup(where, server, meta) {
+  const setup = meta.setup;
+  const remotes = server.remotes ?? [];
+  for (const remote of remotes) {
+    const ids = [...remote.url.matchAll(PLACEHOLDER)].map((match) => match[1]);
+    if (ids.length === 0) continue;
+    if (!setup || !["per-org", "admin"].includes(setup.kind)) fail(where, `remote url ${remote.url} has a placeholder; only a per-org or admin setup may`);
+    for (const id of ids) if (!remote.variables?.[id]) fail(where, `remote url uses {${id}}, which is not in its variables`);
+  }
+  if (!setup) return;
+  if (setup.kind === "per-org") {
+    const problem = orgTemplateProblem(setup.urlTemplate ?? "");
+    if (problem) fail(where, `setup.urlTemplate ${problem}`);
+    if (!remotes.some((remote) => remote.url === setup.urlTemplate)) fail(where, "setup.urlTemplate must be the remote's own url");
+  }
+  if (setup.kind === "byo-oauth") {
+    if (meta.auth !== "oauth") fail(where, "a byo-oauth setup needs auth \"oauth\"");
+    if (remotes.length === 0 || remotes.some((remote) => remote.headers?.length)) fail(where, "a byo-oauth setup needs a remote with no headers");
+    const vendors = remotes.map((remote) => BYO_OAUTH_VENDORS.find((known) => known.server.test(httpsHost(remote.url))));
+    const vendor = vendors[0];
+    if (!vendor || vendors.some((other) => other !== vendor)) {
+      fail(where, `a byo-oauth setup is only for a vendor's own server the plugin knows (${BYO_OAUTH_VENDORS.map((known) => known.vendor).join(", ")})`);
+    } else {
+      // Every link on the card and the sheet: guide, docs, website, and any address in the text (any case, http too).
+      const texts = [setup.reason ?? "", setup.redirectHint ?? "", ...(setup.steps ?? [])];
+      const links = [setup.guideUrl, meta.docsUrl, server.websiteUrl, ...texts.flatMap((text) => text.match(/https?:\/\/[^\s)<>"']+/gi) ?? [])].filter(Boolean);
+      for (const link of links) {
+        if (!vendor.links.includes(httpsHost(link.replace(/[.,;:]+$/, "")))) fail(where, `setup link ${link} is not https on ${vendor.vendor}'s own sites`);
+      }
+    }
+  }
+  if (setup.kind === "approved-clients" && setup.steps) fail(where, "an approved-clients setup links the vendor's page instead of steps");
+  for (const step of setup.steps ?? []) {
+    if (step.includes("${")) fail(where, "setup step holds ${…}");
+  }
+}
+
 function checkVerifiedAt(where, meta) {
   const today = new Date().toISOString().slice(0, 10);
   if (meta.verifiedAt > today) fail(where, `verifiedAt ${meta.verifiedAt} is in the future`);
@@ -178,8 +285,10 @@ function checkEntry(entry, index, validators, seenNames) {
 
   checkRemotes(where, server);
   checkHttpsOnly(where, entry);
+  checkPlainText(where, entry);
   checkNoFilledSecrets(where, server);
   checkAuthConsistency(where, server, meta);
+  checkSetup(where, server, meta);
   checkVerifiedAt(where, meta);
 }
 
@@ -210,6 +319,11 @@ function main() {
   checkList(list);
   checkSecretPatterns(raw);
   (list.servers ?? []).forEach((entry, index) => checkEntry(entry, index, validators, seenNames));
+
+  // The default run also checks v0.1 is v0.2 without its setup entries.
+  if (process.argv[2] === undefined && read("v0.1/servers.json") !== v01Text(list)) {
+    fail("v0.1/servers.json", "is not v0.2 without its setup entries; run npm run build");
+  }
 
   if (errors.length) {
     console.error(`Validation failed with ${errors.length} problem(s):`);

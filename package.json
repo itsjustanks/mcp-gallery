@@ -5,6 +5,7 @@
   "description": "Curated list of first-party MCP servers in MCP Registry format",
   "license": "MIT",
   "scripts": {
+    "build": "node scripts/build.mjs",
     "validate": "node scripts/validate.mjs",
     "check-endpoints": "node scripts/check-endpoints.mjs"
   },

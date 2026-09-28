@@ -16,7 +16,7 @@ Pull requests that add, fix, or remove entries are welcome. Please read the rule
    ```
 
    A `401` is fine. It means the server is up and wants you to sign in.
-3. Add an object to the `servers` array in `v0.1/servers.json`, keep the array sorted by `server.name`, and update `metadata.count`:
+3. Add an object to the `servers` array in `v0.2/servers.json`, keep the array sorted by `server.name`, update `metadata.count`, then run `npm run build` to rewrite `v0.1/servers.json` (never edit that one by hand):
 
    ```json
    {
@@ -46,6 +46,7 @@ Pull requests that add, fix, or remove entries are welcome. Please read the rule
 
    ```sh
    npm ci
+   npm run build
    npm run validate
    npm run check-endpoints
    ```
@@ -63,11 +64,24 @@ Pull requests that add, fix, or remove entries are welcome. Please read the rule
 - **`iconUrl`**: the vendor's GitHub organisation avatar (`gh api users/<org> --jq .avatar_url`).
 - **`verifiedAt`**: the date you checked the vendor page, in `YYYY-MM-DD` format.
 
+## Needs setup entries
+
+An official server for an everyday app that can't be added in one click may still go in, with a `setup` object in the gallery metadata (see the [README](README.md#needs-setup)):
+
+- `kind`: `byo-oauth` (each user registers an OAuth client), `approved-clients` (only approved AI apps can sign in), `admin` (an admin turns it on first) or `per-org` (the address holds the customer's subdomain or org).
+- `reason`: one plain line a non-technical person understands, 200 characters or fewer.
+- `guideUrl`: the vendor's own setup page.
+- `byo-oauth`: only for a vendor the paseo-mcp plugin ships in its `BYO_OAUTH_VENDORS` list (Google, HubSpot, Zoom), at that vendor's own MCP host, with every link on the vendor's own sites; a new vendor needs a plugin release first. `steps` in plain English, each with the exact console link where there is one; `redirectHint` naming the vendor's redirect field; `clients` listing only the AI apps you checked can take a pre-registered client (Claude Code takes a client ID and secret; Codex takes a client ID only); `scopes` when the vendor's guide lists them.
+- `approved-clients`: `clients` only for apps the vendor's own page names as supported.
+- `per-org`: the remote URL is the template (`https://{subdomain}.zendesk.com/api/mcp`), described in the remote's `variables`, and `urlTemplate` repeats it exactly; `label` says what to type.
+
+Link the vendor page for every claim in `setup` in your pull request.
+
 ## Not accepted
 
 - Community-built wrappers or proxies for someone else's API.
-- Self-hosted, private, company-internal, or per-customer URLs.
-- Servers that only work with a fixed list of approved clients, or that need each user to register their own OAuth app.
+- Self-hosted, private or company-internal URLs. A per-customer URL only as a `per-org` template.
+- Servers that only work with a fixed list of approved clients, need each user to register their own OAuth app, need an admin, or live on a per-customer address, unless the entry says so in `setup`.
 - Any real token, key, email address, or IP address.
 
 ## Fix or remove an entry

@@ -3,7 +3,7 @@
 // Never sends credentials. A 401/403 means "alive, needs auth" and counts as healthy.
 import { readFileSync, writeFileSync } from "node:fs";
 
-const DATA_PATH = new URL("../v0.1/servers.json", import.meta.url);
+const DATA_PATH = new URL("../v0.2/servers.json", import.meta.url);
 const TIMEOUT_MS = 15_000;
 const HEALTHY_STATUSES = new Set([400, 401, 403, 405, 406, 415]);
 const INITIALIZE = JSON.stringify({
@@ -33,11 +33,20 @@ async function request(url, init) {
   }
 }
 
+// A per-org or admin address holds a placeholder; it is probed with a value
+// that exists (Zendesk's own subdomain) or answers without one (an all-zero tenant).
+const PROBE_VALUES = { subdomain: "support", org: "support", tenantId: "00000000-0000-0000-0000-000000000000" };
+
+function probeUrl(url) {
+  return url.replace(/\{([A-Za-z_][A-Za-z0-9_]*)\}/g, (match, id) => PROBE_VALUES[id] ?? match);
+}
+
 function probeRemote(remote) {
+  const url = probeUrl(remote.url);
   if (remote.type === "sse") {
-    return request(remote.url, { method: "GET", headers: { Accept: "text/event-stream" } });
+    return request(url, { method: "GET", headers: { Accept: "text/event-stream" } });
   }
-  return request(remote.url, {
+  return request(url, {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream" },
     body: INITIALIZE,

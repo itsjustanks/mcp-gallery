@@ -4,9 +4,19 @@
   "title": "Curation metadata stored under _meta[\"io.github.itsjustanks/mcp-gallery\"]",
   "type": "object",
   "additionalProperties": false,
-  "required": ["displayName", "category", "auth", "docsUrl", "verifiedAt"],
+  "required": [
+    "displayName",
+    "category",
+    "auth",
+    "docsUrl",
+    "verifiedAt"
+  ],
   "properties": {
-    "displayName": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "displayName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60
+    },
     "category": {
       "type": "string",
       "description": "The same names the paseo-mcp plugin uses for its category filter (CATALOG_CATEGORIES).",
@@ -25,9 +35,228 @@
         "other"
       ]
     },
-    "iconUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
-    "auth": { "type": "string", "enum": ["oauth", "token", "none"] },
-    "docsUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
-    "verifiedAt": { "type": "string", "format": "date" }
+    "iconUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "auth": {
+      "type": "string",
+      "enum": [
+        "oauth",
+        "token",
+        "none"
+      ]
+    },
+    "docsUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "verifiedAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "setup": {
+      "type": "object",
+      "description": "Only for servers that can't be added in one click. See README, 'Needs setup'.",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "reason",
+        "guideUrl"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "byo-oauth",
+            "approved-clients",
+            "admin",
+            "per-org"
+          ],
+          "description": "byo-oauth: the user registers their own OAuth client. approved-clients: the vendor only lets approved AI apps sign in. admin: an administrator has to turn it on first. per-org: the address holds the user's own subdomain or org."
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Why it can't be added in one click, in one plain line."
+        },
+        "guideUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "description": "The vendor's own setup page."
+        },
+        "steps": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "description": "byo-oauth: short plain steps. An https address in a step is shown as a link."
+        },
+        "redirectHint": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "byo-oauth: the name of the field in the vendor's console where the redirect address goes. The client fills in the address itself."
+        },
+        "clients": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "claude",
+              "codex"
+            ]
+          },
+          "description": "byo-oauth: the AI apps that can take a pre-registered OAuth client for this server. approved-clients: the vendor's approved apps among these."
+        },
+        "scopes": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[A-Za-z0-9._:/+-]+( [A-Za-z0-9._:/+-]+)*$",
+          "description": "byo-oauth: the scopes to ask for, space-separated, as the vendor's guide lists them."
+        },
+        "urlTemplate": {
+          "type": "string",
+          "pattern": "^https://",
+          "description": "per-org: the server's address with one {subdomain} or {org}."
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "per-org: what to call the value, for example 'Your Zendesk subdomain'."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "byo-oauth"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "steps",
+              "redirectHint",
+              "clients"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "urlTemplate"
+                  ]
+                },
+                {
+                  "required": [
+                    "label"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "per-org"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "urlTemplate",
+              "label"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "redirectHint"
+                  ]
+                },
+                {
+                  "required": [
+                    "clients"
+                  ]
+                },
+                {
+                  "required": [
+                    "scopes"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "approved-clients",
+                  "admin"
+                ]
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "redirectHint"
+                  ]
+                },
+                {
+                  "required": [
+                    "scopes"
+                  ]
+                },
+                {
+                  "required": [
+                    "urlTemplate"
+                  ]
+                },
+                {
+                  "required": [
+                    "label"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "admin"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "clients"
+              ]
+            }
+          }
+        }
+      ]
+    }
   }
 }
