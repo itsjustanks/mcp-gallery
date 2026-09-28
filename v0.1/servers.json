@@ -3,6 +3,57 @@
     {
       "server": {
         "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "ai.fireflies/fireflies",
+        "title": "Fireflies",
+        "description": "Search your Fireflies meeting transcripts, summaries, and action items.",
+        "version": "1.1.0",
+        "websiteUrl": "https://fireflies.ai",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://api.fireflies.ai/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Fireflies",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/22060131?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://docs.fireflies.ai/getting-started/mcp-configuration",
+          "verifiedAt": "2026-09-28"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "ai.granola/mcp",
+        "title": "Granola",
+        "description": "Search and ask questions about your Granola meeting notes and transcripts.",
+        "version": "1.0.0",
+        "websiteUrl": "https://www.granola.ai",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.granola.ai/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Granola",
+          "category": "productivity",
+          "auth": "oauth",
+          "docsUrl": "https://docs.granola.ai/help-center/sharing/integrations/mcp",
+          "verifiedAt": "2026-09-28"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
         "name": "app.linear/linear",
         "title": "Linear",
         "description": "Find, create, and update Linear issues, projects, and comments.",
@@ -161,6 +212,32 @@
           "auth": "oauth",
           "docsUrl": "https://docs.attio.com/mcp/overview",
           "verifiedAt": "2026-09-24"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.calendly/mcp",
+        "title": "Calendly",
+        "description": "Check availability, share booking links, and manage scheduled Calendly meetings.",
+        "version": "1.0.0",
+        "websiteUrl": "https://calendly.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.calendly.com"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Calendly",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/7584333?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://developer.calendly.com/docs/mcp/calendly-mcp-server",
+          "verifiedAt": "2026-09-28"
         }
       }
     },
@@ -537,6 +614,31 @@
     {
       "server": {
         "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "com.slashy/mcp",
+        "title": "Slashy",
+        "description": "Read, triage, and draft replies to your email and calendar in Slashy.",
+        "version": "1.0.0",
+        "websiteUrl": "https://slashy.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://slashy.ctrlcenter.ai/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Slashy",
+          "category": "productivity",
+          "auth": "oauth",
+          "docsUrl": "https://help.slashy.com/features/integrations/mcp",
+          "verifiedAt": "2026-09-28"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
         "name": "com.squareup/mcp",
         "title": "Square",
         "description": "Access the Square API: payments, orders, customers, catalog, and more.",
@@ -853,6 +955,32 @@
     {
       "server": {
         "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.github.miroapp/mcp-server",
+        "title": "Miro",
+        "description": "Read, build, and summarise Miro boards, diagrams, and tables.",
+        "version": "1.0.2",
+        "websiteUrl": "https://miro.com",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.miro.com/"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Miro",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/48276018?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://developers.miro.com/docs/connecting-to-miro-mcp",
+          "verifiedAt": "2026-09-28"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
         "name": "io.github.modelcontextprotocol/server-filesystem",
         "title": "Filesystem (reference)",
         "description": "Official MCP reference server for reading and writing files in allowed local directories.",
@@ -1057,9 +1185,65 @@
           "verifiedAt": "2026-09-24"
         }
       }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "net.todoist/mcp",
+        "title": "Todoist",
+        "description": "Read, add, and update your Todoist tasks and projects.",
+        "version": "1.0.0",
+        "websiteUrl": "https://www.todoist.com",
+        "repository": {
+          "url": "https://github.com/Doist/todoist-ai",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://ai.todoist.net/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Todoist",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/2565372?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://github.com/Doist/todoist-ai",
+          "verifiedAt": "2026-09-28"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "so.amie/mcp",
+        "title": "Amie",
+        "description": "Use your Amie calendar, to-dos, meeting notes, and email from chat.",
+        "version": "1.0.0",
+        "websiteUrl": "https://amie.so",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.amie.so"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Amie",
+          "category": "productivity",
+          "iconUrl": "https://avatars.githubusercontent.com/u/66032962?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://amie.so/mcp",
+          "verifiedAt": "2026-09-28"
+        }
+      }
     }
   ],
   "metadata": {
-    "count": 34
+    "count": 41
   }
 }
