@@ -1495,6 +1495,36 @@
     {
       "server": {
         "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.github.voidly-ai/voidpay",
+        "title": "Voidpay",
+        "description": "Find Voidpay agent services and storefronts and prepare owner-approved checkout links.",
+        "version": "0.7.3",
+        "websiteUrl": "https://voidly.ai/pay",
+        "repository": {
+          "url": "https://github.com/voidly-ai/pay-mcp",
+          "source": "github"
+        },
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://api.voidly.ai/mcp/voidpay"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Voidpay",
+          "category": "payments",
+          "iconUrl": "https://avatars.githubusercontent.com/u/239477989?v=4",
+          "auth": "none",
+          "docsUrl": "https://voidly.ai/pay/hosted-connector",
+          "verifiedAt": "2026-10-06"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
         "name": "io.gleap/mcp",
         "title": "Gleap",
         "description": "Work with Gleap tickets, contacts, and help center articles from chat.",
@@ -1635,6 +1665,6 @@
     }
   ],
   "metadata": {
-    "count": 55
+    "count": 56
   }
 }
