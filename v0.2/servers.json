@@ -1954,6 +1954,32 @@
     {
       "server": {
         "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.github.robot-speed/mcp",
+        "title": "Robot Speed",
+        "description": "Run SEO audits, keyword research, articles, backlinks, and AI visibility checks for your site.",
+        "version": "1.0.1",
+        "websiteUrl": "https://www.robot-speed.com/mcp",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://www.robot-speed.com/api/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Robot Speed",
+          "category": "marketing",
+          "iconUrl": "https://avatars.githubusercontent.com/u/276658053?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://www.robot-speed.com/mcp",
+          "verifiedAt": "2026-10-07"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
         "name": "io.github.upstash/context7",
         "title": "Context7",
         "description": "Fetch current, version-specific library documentation and code examples.",
@@ -2182,6 +2208,6 @@
     }
   ],
   "metadata": {
-    "count": 69
+    "count": 70
   }
 }
