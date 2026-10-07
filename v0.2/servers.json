@@ -1764,6 +1764,32 @@
     {
       "server": {
         "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.github.kleaphq/kleap",
+        "title": "Kleap",
+        "description": "Create, edit, and publish websites and web apps with the Kleap AI builder.",
+        "version": "1.1.0",
+        "websiteUrl": "https://kleap.co/mcp",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://kleap.co/api/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.github.itsjustanks/mcp-gallery": {
+          "displayName": "Kleap",
+          "category": "design",
+          "iconUrl": "https://avatars.githubusercontent.com/u/29578415?v=4",
+          "auth": "oauth",
+          "docsUrl": "https://kleap.co/mcp",
+          "verifiedAt": "2026-10-07"
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
         "name": "io.github.mapbox/mcp-server",
         "title": "Mapbox",
         "description": "Search places, get directions and travel times, and make maps with Mapbox.",
@@ -2182,6 +2208,6 @@
     }
   ],
   "metadata": {
-    "count": 69
+    "count": 70
   }
 }
